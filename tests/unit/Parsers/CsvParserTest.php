@@ -16,10 +16,11 @@ bar,far';
         $this->assertTrue($parser instanceof Parser);
     }
     
+    /**
+     * @expectedException InvalidArgumentException
+     */
     public function testConstructorThrowsInvalidExecptionWhenArrayDataIsProvided()
     {
-        $this->expectException(\InvalidArgumentException::class);
-        
         $parser = new CsvParser([0, 1, 3]);
     }
 

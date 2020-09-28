@@ -45,10 +45,11 @@ class FormatterTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
+    /**
+     * @expectedException InvalidArgumentException
+     */
     public function testFormatterMakeThrowsInvalidTypeException()
     {
-        $this->expectException(\InvalidArgumentException::class);
-
         $formatter = Formatter::make('', 'blue');
     }
 
