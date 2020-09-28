@@ -38,6 +38,5 @@
                 "Formatter": "SoapBox\\Formatter"
             }
         }
-    },
-    "minimum-stability": "stable"
+    }
 }

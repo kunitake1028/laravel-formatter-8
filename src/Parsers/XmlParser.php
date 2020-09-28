@@ -4,18 +4,16 @@ class XmlParser extends Parser
 {
     private $xml;
 
-    /**
-     * Ported from laravel-formatter
-     * https://github.com/SoapBox/laravel-formatter
-     *
-     * @author  Daniel Berry <daniel@danielberry.me>
-     * @license MIT License (see LICENSE.readme included in the bundle)
-     */
     private function objectify($value)
     {
-        $temp = is_string($value) ?
-        simplexml_load_string($value, 'SimpleXMLElement', LIBXML_NOCDATA) :
-        $value;
+        $temp = $value;
+        if (is_string($value)) {
+            $value = preg_replace('#&(?=[a-z_0-9]+=)#', '&amp;', $value);
+            $value = preg_replace('/<COVER (.*?)>/', '<COVER $1 />', $value);
+            $value = preg_replace('/<XUI (.*?)>/', '<COVER $1 />', $value);
+            $value = preg_replace('/<TGP (.*?)>/', '<COVER $1 />', $value);
+            $temp = simplexml_load_string($value, 'SimpleXMLElement', LIBXML_NOCDATA);
+        }
 
         $result = [];
 
